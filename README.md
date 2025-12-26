@@ -29,13 +29,31 @@ pnpm install svelte-email
 
 ## 1. Create an email using Svelte
 
-`src/$lib/emails/Hello.svelte`
+`src/$lib/emails/Hello.svelte` (Legacy)
 
 ```html
 <script>
 	import { Button, Hr, Html, Text } from 'svelte-email';
 
-	export let name = 'World';
+	export let name = 'World'; 
+</script>
+
+<Html lang="en">
+	<Text>
+		Hello, {name}!
+	</Text>
+	<Hr />
+	<Button href="https://svelte.dev">Visit Svelte</Button>
+</Html>
+```
+
+`src/$lib/emails/Hello.svelte` (Runes)
+
+```html
+<script lang="ts">
+	import { Button, Hr, Html, Text } from 'svelte-email';
+
+	let { name = "World" } : { name?: String }  = $props();
 </script>
 
 <Html lang="en">
